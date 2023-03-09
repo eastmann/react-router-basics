@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+
+    const Article = ({ onClick }) => {
+      return (
+        <div>
+          <nav>
+            <a href="#" onClick={onClick}>На главную</a>
+          </nav>
+          <section>
+            <h1>Первая статья</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+          </section>
+        </div>
+      )
+    }
+
+    const Main = ({ onClick }) => {
+      return (
+        <section>
+          <h1>Список статей</h1>
+          <ul>
+            <li><a href="#" onClick={onClick}>Первая статья</a></li>
+          </ul>
+        </section>
+      )
+    }
+
+    const App = () => {
+      const [page, setPage] = React.useState('main')
+
+      return (
+        <main style={{ fontSize: 40 }}>
+          {page === 'main' && <Main onClick={(event) => {
+            event.preventDefault()
+            setPage('article')
+          }} />}
+          {page === 'article' && <Article onClick={(event) => {
+            event.preventDefault()
+            setPage('main')
+          }} />}
+        </main>
+      )
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+
+</body>
+
+</html>
