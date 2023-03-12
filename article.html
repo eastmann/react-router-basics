@@ -19,21 +19,27 @@
 
   <script type="text/babel">
 
-    const Main = () => {
+    const Article = () => {
       return (
-        <section>
-          <h1>Список статей</h1>
-          <ul>
-            <li><a href="./article.html">Первая статья</a></li>
-          </ul>
-        </section>
+        <div>
+          <nav>
+            <a href="./index.html">На главную</a>
+          </nav>
+          <section>
+            <h1>Первая статья</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+          </section>
+        </div>
       )
     }
 
     const App = () => {
       return (
         <main style={{ fontSize: 40 }}>
-          <Main />
+          <Article />
         </main>
       )
     }
