@@ -1,8 +1,4 @@
-const getPathRegEx = (template) => {
-  const templateMather = template.replace(/:[^\s\/]+/g, '[\\w]+')
-
-  return new RegExp(templateMather)
-}
+// new RegExp(string.replace(':id','.+'), '')
 
 const components = {
   Home: 'home',
@@ -61,15 +57,23 @@ const config = [
 
 // export const getComponent = (url: URL, config: ConfigItem[]): string => {
 const getComponent = (url, config) => {
-  for (let i = 0; i < config.length; i++) {
-    if (getPathRegEx(config[i].path).test(url.pathname)) {
-      return config[i].component
-    }
-  }
+  const configItem = config.filter(item => {
+    // const regex = new RegExp(item.path.replace(':id','.+'), '')
+    const regex = new RegExp(item.path.replace(':id', '.+'), '')
+    // console.log('URL:', url.pathname)
+    // console.log('TEST URL:', regex.test(url.pathname))
+    console.log('component', config)
+    return regex.test(url.pathname)
+    // regex.test(item.path)
+    // new RegExp(item.path.replace(':id','.+'), '') === url.pathname
+  });
+  // const regex = new RegExp(url.pathname.replace(':id','.+'), '')
+  // console.log('configItem:', configItem);
+  // console.log('configItem:', configItem);
+  return configItem
 };
 
-// console.log(getComponent(new URL('https://example.com/'), config)) // 'home'
-// console.log(getComponent(new URL('https://example.com/books/12'), config)) // 'books item'
-console.log(getComponent(new URL('https://example.com/books/create'), config)) // 'books item create'
-// console.log(getComponent(new URL('https://example.com/books/abc'), config)) // 'books item'
-// console.log(getComponent(new URL('https://example.com/whateverpage'), config)) // 'home'
+// console.log(getComponent(new URL('https://example.com/'), config));
+console.log(getComponent(new URL('https://example.com/books/hwgehw'), config));
+
+// getComponent(new URL('https://example.com/books/12'), config)
