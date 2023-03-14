@@ -20,13 +20,46 @@
   <script type="text/babel">
 
     const Article = () => {
+      const [title, setTitle] = React.useState('')
+
+      React.useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const id = params.get('id')
+
+        if (id === null) {
+          setTitle('Не знаю какая статья')
+          return
+        }
+
+        switch (id) {
+          case '1':
+            setTitle('Первая статья')
+            break
+          case '2':
+            setTitle('Вторая статья')
+            break
+          case '3':
+            setTitle('Третья статья')
+            break
+          default:
+            setTitle('Не знаю какая статья')
+            break
+        }
+
+      }, [])
+
       return (
         <div>
           <nav>
             <a href="./index.html">На главную</a>
           </nav>
           <section>
-            <h1>Первая статья</h1>
+            <h2>{title}</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
+            <h2 id="second"><a href="#second">Вторая статья</a></h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, dolorem.</p>
@@ -38,7 +71,7 @@
 
     const App = () => {
       return (
-        <main style={{ fontSize: 40 }}>
+        <main style={{ fontSize: 30 }}>
           <Article />
         </main>
       )
